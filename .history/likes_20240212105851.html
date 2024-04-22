@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Like Counter</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: grey;
+  }
+
+  .container {
+    text-align: center;
+  }
+
+  .likeable {
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .likeable:hover {
+    transform: scale(1.05);
+  }
+
+  #likeCount {
+    margin-top: 20px;
+    font-size: 24px;
+    color: white;
+  }
+
+  
+</style>
+</head>
+<body>
+
+<div class="container">
+  <img src="office.avif" alt="Picture" class="likeable">
+  <div id="likeCount">0 Likes</div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  
+  let likeCount = localStorage.getItem('likeCount');
+  if (!likeCount) {
+    localStorage.setItem('likeCount', 0);
+    likeCount = 0;
+  }
+
+  // Display current like count
+  document.getElementById('likeCount').textContent = likeCount + ' Likes';
+
+  // Add event listener for clicks on the image
+  document.querySelector('.likeable').addEventListener('click', function() {
+    // Increment like count
+    likeCount++;
+    // Update like count display
+    document.getElementById('likeCount').textContent = likeCount + ' Likes';
+    // Store updated like count in localStorage
+    localStorage.setItem('likeCount', likeCount);
+  });
+});
+</script>
+
+</body>
+</html>

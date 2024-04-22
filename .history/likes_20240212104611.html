@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Like Counter</title>
+<style>
+  .like {
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<img src="office.avif" alt="Picture" class="likeable">
+<div id="likeCount">0 Likes</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Get current like count from localStorage
+  let likeCount = localStorage.getItem('likeCount');
+  if (!likeCount) {
+    localStorage.setItem('likeCount', 0);
+    likeCount = 0;
+  }
+
+  // Display current like count
+  document.getElementById('likeCount').textContent = likeCount + ' Likes';
+
+  // Add event listener for clicks on the image
+  document.querySelector('.likeable').addEventListener('click', function() {
+    // Increment like count
+    likeCount++;
+    // Update like count display
+    document.getElementById('likeCount').textContent = likeCount + ' Likes';
+    // Store updated like count in localStorage
+    localStorage.setItem('likeCount', likeCount);
+  });
+});
+</script>
+
+</body>
+</html>
